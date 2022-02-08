@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.openButton = new System.Windows.Forms.Button();
             this.buttonStartAndEnd = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.targetFilePathTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // openButton
@@ -45,6 +45,7 @@
             this.openButton.Text = "open";
             this.openButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.openButton.UseVisualStyleBackColor = true;
+            this.openButton.Click += new System.EventHandler(this.openButton_Click);
             // 
             // buttonStartAndEnd
             // 
@@ -58,20 +59,20 @@
             this.buttonStartAndEnd.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.buttonStartAndEnd.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // targetFilePathTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 78);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(225, 23);
-            this.textBox1.TabIndex = 2;
+            this.targetFilePathTextBox.Location = new System.Drawing.Point(12, 78);
+            this.targetFilePathTextBox.Name = "targetFilePathTextBox";
+            this.targetFilePathTextBox.ReadOnly = true;
+            this.targetFilePathTextBox.Size = new System.Drawing.Size(225, 23);
+            this.targetFilePathTextBox.TabIndex = 2;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(249, 113);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.targetFilePathTextBox);
             this.Controls.Add(this.buttonStartAndEnd);
             this.Controls.Add(this.openButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -86,6 +87,6 @@
 
         private Button openButton;
         private Button buttonStartAndEnd;
-        private TextBox textBox1;
+        private TextBox targetFilePathTextBox;
     }
 }
