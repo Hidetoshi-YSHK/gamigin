@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.openButton = new System.Windows.Forms.Button();
-            this.buttonStartAndEnd = new System.Windows.Forms.Button();
+            this.startAndEndButton = new System.Windows.Forms.Button();
             this.targetFilePathTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -47,17 +47,18 @@
             this.openButton.UseVisualStyleBackColor = true;
             this.openButton.Click += new System.EventHandler(this.openButton_Click);
             // 
-            // buttonStartAndEnd
+            // startAndEndButton
             // 
-            this.buttonStartAndEnd.Image = global::Gamigin.Properties.Resources.hourglass_blue;
-            this.buttonStartAndEnd.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonStartAndEnd.Location = new System.Drawing.Point(78, 12);
-            this.buttonStartAndEnd.Name = "buttonStartAndEnd";
-            this.buttonStartAndEnd.Size = new System.Drawing.Size(60, 60);
-            this.buttonStartAndEnd.TabIndex = 1;
-            this.buttonStartAndEnd.Text = "start";
-            this.buttonStartAndEnd.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.buttonStartAndEnd.UseVisualStyleBackColor = true;
+            this.startAndEndButton.Image = global::Gamigin.Properties.Resources.hourglass_blue;
+            this.startAndEndButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.startAndEndButton.Location = new System.Drawing.Point(78, 12);
+            this.startAndEndButton.Name = "startAndEndButton";
+            this.startAndEndButton.Size = new System.Drawing.Size(60, 60);
+            this.startAndEndButton.TabIndex = 1;
+            this.startAndEndButton.Text = "start";
+            this.startAndEndButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.startAndEndButton.UseVisualStyleBackColor = true;
+            this.startAndEndButton.Click += new System.EventHandler(this.startAndEndButton_Click);
             // 
             // targetFilePathTextBox
             // 
@@ -73,7 +74,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(249, 113);
             this.Controls.Add(this.targetFilePathTextBox);
-            this.Controls.Add(this.buttonStartAndEnd);
+            this.Controls.Add(this.startAndEndButton);
             this.Controls.Add(this.openButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
@@ -86,7 +87,7 @@
         #endregion
 
         private Button openButton;
-        private Button buttonStartAndEnd;
+        private Button startAndEndButton;
         private TextBox targetFilePathTextBox;
     }
 }

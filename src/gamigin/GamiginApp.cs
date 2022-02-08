@@ -1,13 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Gamigin
+﻿namespace Gamigin
 {
     internal class GamiginApp
     {
+        /// <summary>
+        /// 監視を開始する
+        /// </summary>
+        public void StartMonitoring()
+        {
+            IsMonitoring = true;
+        }
+
+        /// <summary>
+        /// 監視を終了する
+        /// </summary>
+        public void EndMonitoring()
+        {
+            IsMonitoring = false;
+        }
+
         /// <summary>
         /// シングルトンインスタンス
         /// </summary>
@@ -19,11 +29,17 @@ namespace Gamigin
         public string TargetFilePath { get; set; }
 
         /// <summary>
+        /// 冠詞中か否か
+        /// </summary>
+        public bool IsMonitoring { get; set; }
+
+        /// <summary>
         /// privateコンストラクタ
         /// </summary>
         private GamiginApp()
         {
             TargetFilePath = "";
+            IsMonitoring = false;
         }
 
         /// <summary>

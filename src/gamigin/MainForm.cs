@@ -28,6 +28,23 @@ namespace Gamigin
         }
 
         /// <summary>
+        /// 開始/終了ボタン押下イベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void startAndEndButton_Click(object sender, EventArgs e)
+        {
+            if (gamiginApp.IsMonitoring)
+            {
+                endMonitoring();
+            }
+            else
+            {
+                startMonitoring();
+            }
+        }
+
+        /// <summary>
         /// 対象ファイルパスを更新する
         /// </summary>
         /// <param name="targetFilePath">対象ファイルパス</param>
@@ -39,8 +56,51 @@ namespace Gamigin
         }
 
         /// <summary>
+        /// 監視を開始する
+        /// </summary>
+        private void startMonitoring()
+        {
+            // 開くボタンを無効化
+            openButton.Enabled = false;
+
+            // 終了ボタンに変更する
+            startAndEndButton.Text = END_BUTTON_TEXT;
+            startAndEndButton.Image = Properties.Resources.hourglass_red;
+
+            // 監視を開始
+            gamiginApp.StartMonitoring();
+        }
+
+        /// <summary>
+        /// 監視を終了する
+        /// </summary>
+        private void endMonitoring()
+        {
+            // 開くボタンを有効化
+            openButton.Enabled = true;
+
+            // 開始ボタンに変更する
+            startAndEndButton.Text = START_BUTTON_TEXT;
+            startAndEndButton.Image = Properties.Resources.hourglass_blue;
+
+            // 監視を終了
+            gamiginApp.EndMonitoring();
+        }
+
+        /// <summary>
         /// GamiginAppインスタンス
         /// </summary>
         private GamiginApp gamiginApp;
+
+        /// <summary>
+        /// 開始ボタンのテキスト
+        /// </summary>
+        const string START_BUTTON_TEXT = "start";
+
+        /// <summary>
+        /// 終了ボタンのテキスト
+        /// </summary>
+        const string END_BUTTON_TEXT = "end";
+
     }
 }
