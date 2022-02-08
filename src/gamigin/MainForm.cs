@@ -8,7 +8,17 @@ namespace Gamigin
         public MainForm()
         {
             gamiginApp = GamiginApp.Instance;
+            gamiginApp.MainFormInstance = this;
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// updateTargetFilePathをUIスレッド外から起動する
+        /// </summary>
+        /// <param name="targetFilePath"></param>
+        public void InvokeUpdateTargetFilePath(string targetFilePath)
+        {
+            Invoke((string x) => updateTargetFilePath(x), targetFilePath);
         }
 
         /// <summary>
@@ -30,8 +40,8 @@ namespace Gamigin
         /// <summary>
         /// 開始/終了ボタン押下イベント
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">イベント発生元</param>
+        /// <param name="e">イベント</param>
         private void OnStartAndEndButtonClicked(object sender, EventArgs e)
         {
             if (gamiginApp.IsMonitoring)
@@ -68,7 +78,10 @@ namespace Gamigin
             startAndEndButton.Image = Properties.Resources.hourglass_red;
 
             // 監視を開始
-            gamiginApp.StartMonitoring();
+            if (!gamiginApp.StartMonitoring())
+            {
+                endMonitoring();
+            }
         }
 
         /// <summary>
