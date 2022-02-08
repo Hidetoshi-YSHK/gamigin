@@ -29,20 +29,63 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.openButton = new System.Windows.Forms.Button();
+            this.buttonStartAndEnd = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
+            // 
+            // openButton
+            // 
+            this.openButton.Image = global::Gamigin.Properties.Resources.file_open;
+            this.openButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.openButton.Location = new System.Drawing.Point(12, 12);
+            this.openButton.Name = "openButton";
+            this.openButton.Size = new System.Drawing.Size(60, 60);
+            this.openButton.TabIndex = 0;
+            this.openButton.Text = "open";
+            this.openButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.openButton.UseVisualStyleBackColor = true;
+            // 
+            // buttonStartAndEnd
+            // 
+            this.buttonStartAndEnd.Image = global::Gamigin.Properties.Resources.hourglass_blue;
+            this.buttonStartAndEnd.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonStartAndEnd.Location = new System.Drawing.Point(78, 12);
+            this.buttonStartAndEnd.Name = "buttonStartAndEnd";
+            this.buttonStartAndEnd.Size = new System.Drawing.Size(60, 60);
+            this.buttonStartAndEnd.TabIndex = 1;
+            this.buttonStartAndEnd.Text = "start";
+            this.buttonStartAndEnd.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonStartAndEnd.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(12, 78);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(225, 23);
+            this.textBox1.TabIndex = 2;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(249, 113);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.buttonStartAndEnd);
+            this.Controls.Add(this.openButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Gamigin";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private Button openButton;
+        private Button buttonStartAndEnd;
+        private TextBox textBox1;
     }
 }
