@@ -8,7 +8,7 @@ namespace Gamigin
         [STAThread]
         static void Main()
         {
-            ApplicationConfiguration.Initialize();
+            //ApplicationConfiguration.Initialize();
             Application.Run(new MainForm());
         }
     }

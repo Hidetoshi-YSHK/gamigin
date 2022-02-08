@@ -170,7 +170,7 @@
         {
             if (ParentDirPath != null)
             {
-                var destDirPath = Path.Join(ParentDirPath, DestDirName);
+                var destDirPath = Path.Combine(ParentDirPath, DestDirName);
                 if (!Directory.Exists(destDirPath))
                 {
                     try

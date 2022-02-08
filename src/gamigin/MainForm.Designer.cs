@@ -41,9 +41,10 @@
             // 
             this.openButton.Image = global::Gamigin.Properties.Resources.file_open;
             this.openButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.openButton.Location = new System.Drawing.Point(12, 12);
+            this.openButton.Location = new System.Drawing.Point(10, 10);
+            this.openButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.openButton.Name = "openButton";
-            this.openButton.Size = new System.Drawing.Size(60, 60);
+            this.openButton.Size = new System.Drawing.Size(56, 56);
             this.openButton.TabIndex = 0;
             this.openButton.Text = "open";
             this.openButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -54,9 +55,10 @@
             // 
             this.startAndEndButton.Image = global::Gamigin.Properties.Resources.hourglass_blue;
             this.startAndEndButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.startAndEndButton.Location = new System.Drawing.Point(78, 12);
+            this.startAndEndButton.Location = new System.Drawing.Point(72, 10);
+            this.startAndEndButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.startAndEndButton.Name = "startAndEndButton";
-            this.startAndEndButton.Size = new System.Drawing.Size(60, 60);
+            this.startAndEndButton.Size = new System.Drawing.Size(56, 56);
             this.startAndEndButton.TabIndex = 1;
             this.startAndEndButton.Text = "start";
             this.startAndEndButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -65,43 +67,46 @@
             // 
             // targetFilePathTextBox
             // 
-            this.targetFilePathTextBox.Location = new System.Drawing.Point(12, 78);
+            this.targetFilePathTextBox.Location = new System.Drawing.Point(10, 74);
+            this.targetFilePathTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.targetFilePathTextBox.Name = "targetFilePathTextBox";
             this.targetFilePathTextBox.ReadOnly = true;
-            this.targetFilePathTextBox.Size = new System.Drawing.Size(225, 23);
+            this.targetFilePathTextBox.Size = new System.Drawing.Size(206, 19);
             this.targetFilePathTextBox.TabIndex = 2;
             // 
             // dragAndDropPictureBox
             // 
             this.dragAndDropPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.dragAndDropPictureBox.Image = global::Gamigin.Properties.Resources.drag_and_drop;
-            this.dragAndDropPictureBox.Location = new System.Drawing.Point(174, 18);
+            this.dragAndDropPictureBox.Location = new System.Drawing.Point(160, 14);
+            this.dragAndDropPictureBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dragAndDropPictureBox.Name = "dragAndDropPictureBox";
-            this.dragAndDropPictureBox.Size = new System.Drawing.Size(33, 34);
+            this.dragAndDropPictureBox.Size = new System.Drawing.Size(32, 32);
             this.dragAndDropPictureBox.TabIndex = 3;
             this.dragAndDropPictureBox.TabStop = false;
             // 
             // dragAndDropLabel
             // 
             this.dragAndDropLabel.AutoSize = true;
-            this.dragAndDropLabel.Location = new System.Drawing.Point(174, 55);
+            this.dragAndDropLabel.Location = new System.Drawing.Point(162, 48);
             this.dragAndDropLabel.Name = "dragAndDropLabel";
-            this.dragAndDropLabel.Size = new System.Drawing.Size(33, 15);
+            this.dragAndDropLabel.Size = new System.Drawing.Size(28, 12);
             this.dragAndDropLabel.TabIndex = 4;
             this.dragAndDropLabel.Text = "D&&D";
             // 
             // MainForm
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(249, 113);
+            this.ClientSize = new System.Drawing.Size(228, 104);
             this.Controls.Add(this.dragAndDropLabel);
             this.Controls.Add(this.dragAndDropPictureBox);
             this.Controls.Add(this.targetFilePathTextBox);
             this.Controls.Add(this.startAndEndButton);
             this.Controls.Add(this.openButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
             this.Text = "Gamigin";
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnDragDrop);
