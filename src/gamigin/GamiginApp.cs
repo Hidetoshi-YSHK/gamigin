@@ -20,6 +20,7 @@
             {
                 return false;
             }
+            ParentDirPath = directoryPath;
 
             var fileName = Path.GetFileName(TargetFilePath);
             if (fileName == null)
@@ -31,14 +32,19 @@
             fileWatcher.Path = directoryPath;
             fileWatcher.Filter = fileName;
             fileWatcher.NotifyFilter = 
-                NotifyFilters.LastWrite | NotifyFilters.FileName;
+                NotifyFilters.LastAccess |
+                NotifyFilters.LastWrite |
+                NotifyFilters.FileName;
+            fileWatcher.Created +=
+                new FileSystemEventHandler(OnTargetFileCreated);
             fileWatcher.Changed +=
                 new FileSystemEventHandler(OnTargetFileChanged);
             fileWatcher.Deleted +=
                 new FileSystemEventHandler(OnTargetFileDeleted);
-            fileWatcher.Renamed +=
-                new RenamedEventHandler(OnTargetFileRenamed);
             fileWatcher.EnableRaisingEvents = true;
+
+            CreateDestDir();
+            CopyTargetFile();
 
             return true;
         }
@@ -72,9 +78,24 @@
         public string TargetFilePath { get; set; }
 
         /// <summary>
-        /// 冠詞中か否か
+        /// 親ディレクトリパス
+        /// </summary>
+        public string ParentDirPath { get; set; }
+
+        /// <summary>
+        /// 監視中か否か
         /// </summary>
         public bool IsMonitoring { get; set; }
+
+        /// <summary>
+        /// コピー先ディレクトリ名
+        /// </summary>
+        public string DestDirName { get; set; }
+
+        /// <summary>
+        /// 接尾詞フォーマット
+        /// </summary>
+        public string PostfixFormat { get; set; }
 
         /// <summary>
         /// privateコンストラクタ
@@ -83,7 +104,21 @@
         {
             MainFormInstance = null;
             TargetFilePath = "";
+            ParentDirPath = "";
             IsMonitoring = false;
+            DestDirName = "Gamigin";
+            PostfixFormat = "_yyyyMMdd_HHmm_ss";
+        }
+
+        /// <summary>
+        /// ファイル作成イベント
+        /// </summary>
+        /// <param name="sender">イベント発生元</param>
+        /// <param name="e">イベント</param>
+        private void OnTargetFileCreated(object sender, FileSystemEventArgs e)
+        {
+            CreateDestDir();
+            CopyTargetFile();
         }
 
         /// <summary>
@@ -93,6 +128,8 @@
         /// <param name="e">イベント</param>
         private void OnTargetFileChanged(object sender, FileSystemEventArgs e)
         {
+            CreateDestDir();
+            CopyTargetFile();
         }
 
         /// <summary>
@@ -106,25 +143,60 @@
             if (MainFormInstance != null)
             {
                 MainFormInstance.InvokeUpdateTargetFilePath(TargetFilePath);
+                MainFormInstance.InvokeEndMonitoring();
+            }
+        }
+
+
+        /// <summary>
+        /// 出力先ディレクトリを作る
+        /// </summary>
+        private void CreateDestDir()
+        {
+            if (ParentDirPath != null)
+            {
+                var destDirPath = Path.Join(ParentDirPath, DestDirName);
+                if (!Directory.Exists(destDirPath))
+                {
+                    try
+                    {
+                        Directory.CreateDirectory(destDirPath);
+                    }
+                    catch (Exception)
+                    {
+                        // TODO:メインフォームにメッセージボックスを出させる
+                    }
+                }
             }
         }
 
         /// <summary>
-        /// ファイル名変更イベント
+        /// 対象ファイルを出力先ディレクトリに接尾詞つきでコピー
         /// </summary>
-        /// <param name="sender">イベント発生元</param>
-        /// <param name="e">イベント</param>
-        private void OnTargetFileRenamed(object sender, RenamedEventArgs e)
+        private void CopyTargetFile()
         {
-            TargetFilePath = e.FullPath;
-            var fileName = Path.GetFileName(e.FullPath);
-            if ((fileWatcher != null) && (fileName != null))
+            var baseName = Path.GetFileNameWithoutExtension(TargetFilePath);
+            var extension = Path.GetExtension(TargetFilePath);
+            if ((baseName == null) || (extension == null))
             {
-                fileWatcher.Filter = fileName;
+                return;
             }
-            if (MainFormInstance != null)
+
+            var postfix = DateTime.Now.ToString(PostfixFormat);
+            if (postfix == null)
             {
-                MainFormInstance.InvokeUpdateTargetFilePath(TargetFilePath);
+                return;
+            }
+
+            var destFileName = baseName + postfix + extension;
+            var destFilePath = 
+                Path.Combine(ParentDirPath, DestDirName, destFileName);
+            try
+            {
+                File.Copy(TargetFilePath, destFilePath, true);
+            }
+            catch (Exception)
+            {
             }
         }
 
@@ -137,5 +209,6 @@
         /// ファイル監視インスタンス
         /// </summary>
         private FileSystemWatcher? fileWatcher = null;
+
     }
 }

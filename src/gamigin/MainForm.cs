@@ -22,6 +22,14 @@ namespace Gamigin
         }
 
         /// <summary>
+        /// endMonitoringをUIスレッド外から起動する
+        /// </summary>
+        public void InvokeEndMonitoring()
+        {
+            Invoke(() => endMonitoring());
+        }
+
+        /// <summary>
         /// 開くボタン押下イベント
         /// </summary>
         /// <param name="sender">イベント発生元</param>
@@ -35,6 +43,9 @@ namespace Gamigin
             {
                 updateTargetFilePath(ofd.FileName);
             }
+
+            // ファイルを指定したら自動的に監視を始める
+            startMonitoring();
         }
 
         /// <summary>
