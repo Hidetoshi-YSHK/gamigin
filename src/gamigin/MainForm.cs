@@ -16,7 +16,7 @@ namespace Gamigin
         /// </summary>
         /// <param name="sender">イベント発生元</param>
         /// <param name="e">イベント</param>
-        private void openButton_Click(object sender, EventArgs e)
+        private void OnOpenButtonClicked(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Title = "対象ファイルを選択してください";
@@ -32,7 +32,7 @@ namespace Gamigin
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void startAndEndButton_Click(object sender, EventArgs e)
+        private void OnStartAndEndButtonClicked(object sender, EventArgs e)
         {
             if (gamiginApp.IsMonitoring)
             {

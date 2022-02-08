@@ -45,7 +45,7 @@
             this.openButton.Text = "open";
             this.openButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.openButton.UseVisualStyleBackColor = true;
-            this.openButton.Click += new System.EventHandler(this.openButton_Click);
+            this.openButton.Click += new System.EventHandler(this.OnOpenButtonClicked);
             // 
             // startAndEndButton
             // 
@@ -58,7 +58,7 @@
             this.startAndEndButton.Text = "start";
             this.startAndEndButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.startAndEndButton.UseVisualStyleBackColor = true;
-            this.startAndEndButton.Click += new System.EventHandler(this.startAndEndButton_Click);
+            this.startAndEndButton.Click += new System.EventHandler(this.OnStartAndEndButtonClicked);
             // 
             // targetFilePathTextBox
             // 
