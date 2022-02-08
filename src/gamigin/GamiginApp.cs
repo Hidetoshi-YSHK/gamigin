@@ -41,6 +41,8 @@
                 new FileSystemEventHandler(OnTargetFileChanged);
             fileWatcher.Deleted +=
                 new FileSystemEventHandler(OnTargetFileDeleted);
+            fileWatcher.Renamed +=
+                new RenamedEventHandler(OnTargetFileRenamed);
             fileWatcher.EnableRaisingEvents = true;
 
             CreateDestDir();
@@ -147,6 +149,19 @@
             }
         }
 
+        /// <summary>
+        /// ファイル名変更イベント
+        /// </summary>
+        /// <param name="sender">イベント発生元</param>
+        /// <param name="e">イベント</param>
+        private void OnTargetFileRenamed(object sender, RenamedEventArgs e)
+        {
+            if (TargetFilePath == e.FullPath)
+            {
+                CreateDestDir();
+                CopyTargetFile();
+            }
+        }
 
         /// <summary>
         /// 出力先ディレクトリを作る

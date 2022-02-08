@@ -84,6 +84,10 @@ namespace Gamigin
             // 開くボタンを無効化
             openButton.Enabled = false;
 
+            // ドラッグ＆ドロップをグレーアウト
+            dragAndDropLabel.Enabled = false;
+            dragAndDropPictureBox.Enabled = false;
+
             // 終了ボタンに変更する
             startAndEndButton.Text = END_BUTTON_TEXT;
             startAndEndButton.Image = Properties.Resources.hourglass_red;
@@ -103,12 +107,66 @@ namespace Gamigin
             // 開くボタンを有効化
             openButton.Enabled = true;
 
+            // ドラッグ＆ドロップをグレーアウト解除
+            dragAndDropLabel.Enabled = true;
+            dragAndDropPictureBox.Enabled = true;
+
             // 開始ボタンに変更する
             startAndEndButton.Text = START_BUTTON_TEXT;
             startAndEndButton.Image = Properties.Resources.hourglass_blue;
 
             // 監視を終了
             gamiginApp.EndMonitoring();
+        }
+
+        /// <summary>
+        /// ドラッグドロップイベント
+        /// </summary>
+        /// <param name="sender">イベント発生元</param>
+        /// <param name="e">イベント</param>
+        private void OnDragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data == null)
+            {
+                return;
+            }
+
+            // 監視中のドラッグ＆ドロップは無視する
+            if (gamiginApp.IsMonitoring)
+            {
+                return;
+            }
+
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            if (files.Length > 0)
+            {
+                updateTargetFilePath(files[0]);
+
+                // ファイルを指定したら自動的に監視を始める
+                startMonitoring();
+            }
+        }
+
+        /// <summary>
+        /// ドラッグエンターイベント
+        /// </summary>
+        /// <param name="sender">イベント発生元</param>
+        /// <param name="e">イベント</param>
+        private void OnDragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data == null)
+            {
+                return;
+            }
+
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.All;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
         }
 
         /// <summary>
@@ -125,6 +183,5 @@ namespace Gamigin
         /// 終了ボタンのテキスト
         /// </summary>
         const string END_BUTTON_TEXT = "end";
-
     }
 }
