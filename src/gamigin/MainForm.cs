@@ -1,4 +1,4 @@
-namespace gamigin
+namespace Gamigin
 {
     public partial class MainForm : Form
     {

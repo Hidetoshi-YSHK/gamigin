@@ -1,4 +1,4 @@
-namespace gamigin
+namespace Gamigin
 {
     internal static class Program
     {
