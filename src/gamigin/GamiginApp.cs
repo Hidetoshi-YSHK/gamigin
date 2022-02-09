@@ -119,6 +119,7 @@
         /// <param name="e">イベント</param>
         private void OnTargetFileCreated(object sender, FileSystemEventArgs e)
         {
+            Thread.Sleep(WAIT_MILLISECONDS);
             CreateDestDir();
             CopyTargetFile();
         }
@@ -130,6 +131,7 @@
         /// <param name="e">イベント</param>
         private void OnTargetFileChanged(object sender, FileSystemEventArgs e)
         {
+            Thread.Sleep(WAIT_MILLISECONDS);
             CreateDestDir();
             CopyTargetFile();
         }
@@ -158,6 +160,7 @@
         {
             if (TargetFilePath == e.FullPath)
             {
+                Thread.Sleep(WAIT_MILLISECONDS);
                 CreateDestDir();
                 CopyTargetFile();
             }
@@ -225,5 +228,10 @@
         /// </summary>
         private FileSystemWatcher? fileWatcher = null;
 
+
+        /// <summary>
+        /// イベント発生から保存開始までどれだけスリープするか
+        /// </summary>
+        private const int WAIT_MILLISECONDS = 2000;
     }
 }
